@@ -175,7 +175,11 @@ const UserTable = () => {
                 <TableCell align="center">{user.phone}</TableCell>
                 <TableCell align="center">{user.code}</TableCell>
                 <TableCell align="center">
-                  {user.level === "client" ? "Khách hàng" : "Đại lý"}
+                  {user.level === "default"
+                    ? "Shop"
+                    : user.level === "client"
+                    ? "Khách hàng"
+                    : "Đại lý"}
                 </TableCell>
                 <TableCell align="center">{user.commission}%</TableCell>
                 <TableCell align="center">
@@ -227,6 +231,7 @@ const UserTable = () => {
               value={userForm.level}
               onChange={handleChange}
             >
+              <MenuItem value="default">Shop</MenuItem>
               <MenuItem value="client">Khách hàng</MenuItem>
               <MenuItem value="agency">Đại lý</MenuItem>
             </Select>

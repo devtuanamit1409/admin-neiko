@@ -213,10 +213,8 @@ const OrderTable = () => {
                     Tên sản phẩm: {item.product.name}
                   </Typography>
                   <Typography variant="body2">Số lượng: {item.qty}</Typography>
-                  <Typography variant="body2">
-                    Kích thước: {item.size}
-                  </Typography>
-                  <Typography variant="body2">Màu sắc: {item.color}</Typography>
+                  <Typography variant="body2">Mã: {item.size}</Typography>
+                  {/* <Typography variant="body2">Màu sắc: {item.color}</Typography> */}
                 </Box>
               ))}
             </>

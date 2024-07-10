@@ -18,7 +18,7 @@ const Edit = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [sizes, setSizes] = useState([
-    { size: "", retailPrice: "", wholesalePrice: "" },
+    { size: "", retailPrice: "", wholesalePrice: "", defaultPrice: "" },
   ]);
   const [colors, setColors] = useState([""]);
   const [image, setImage] = useState(null);
@@ -157,15 +157,23 @@ const Edit = () => {
           onChange={(e) => setDescription(e.target.value)}
         />
         <Typography variant="h6" component="h2" gutterBottom>
-          Kích thước và Giá
+          Mã và Giá
         </Typography>
         {sizes.map((size, index) => (
           <Box key={index} display="flex" alignItems="center" mb={2}>
             <TextField
-              label="Kích thước"
+              label="Mã"
               name="size"
               margin="normal"
               value={size.size}
+              onChange={(e) => handleSizeChange(index, e)}
+              required
+            />
+            <TextField
+              label="Giá shop"
+              name="defaultPrice"
+              margin="normal"
+              value={size.defaultPrice}
               onChange={(e) => handleSizeChange(index, e)}
               required
             />
@@ -189,10 +197,10 @@ const Edit = () => {
           </Box>
         ))}
         <Button onClick={handleAddSize} variant="outlined" sx={{ mb: 2 }}>
-          Thêm kích thước
+          Thêm mã
         </Button>
 
-        <Typography variant="h6" component="h2" gutterBottom>
+        {/* <Typography variant="h6" component="h2" gutterBottom>
           Màu sắc
         </Typography>
         {colors.map((color, index) => (
@@ -209,7 +217,7 @@ const Edit = () => {
         ))}
         <Button onClick={handleAddColor} variant="outlined" sx={{ mb: 2 }}>
           Thêm màu sắc
-        </Button>
+        </Button> */}
 
         <Typography variant="h6" component="h2" gutterBottom>
           Hình ảnh
