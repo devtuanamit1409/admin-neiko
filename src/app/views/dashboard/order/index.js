@@ -125,33 +125,44 @@ const OrderTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {orders.map((order) => (
-              <TableRow key={order._id}>
-                <TableCell align="center">{order.user.name}</TableCell>
-                <TableCell align="center">{order.phone}</TableCell>
-                <TableCell align="center">{order.shippingAddress}</TableCell>
-                <TableCell align="center">
-                  {order.totalPrice.toLocaleString()} đ
-                </TableCell>
-                <TableCell align="center">
-                  {order.isDelivered ? "Đã giao" : "Đang xử lý"}
-                </TableCell>
-                <TableCell align="center">
-                  {new Date(order.createdAt).toLocaleDateString()}
-                </TableCell>
-                <TableCell align="center">
-                  <Button color="primary" onClick={() => handleOpen(order)}>
-                    Xem
-                  </Button>
-                  <Button
-                    color="secondary"
-                    onClick={() => handleDelete(order._id)}
-                  >
-                    Xoá
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
+            {orders
+              .filter(
+                (order) =>
+                  order &&
+                  order.user &&
+                  order.user.name &&
+                  order.phone &&
+                  order.shippingAddress &&
+                  order.totalPrice !== undefined &&
+                  order.createdAt
+              ) // Kiểm tra các đơn hàng tồn tại và có đầy đủ thông tin
+              .map((order) => (
+                <TableRow key={order._id}>
+                  <TableCell align="center">{order.user.name}</TableCell>
+                  <TableCell align="center">{order.phone}</TableCell>
+                  <TableCell align="center">{order.shippingAddress}</TableCell>
+                  <TableCell align="center">
+                    {order.totalPrice.toLocaleString()} đ
+                  </TableCell>
+                  <TableCell align="center">
+                    {order.isDelivered ? "Đã giao" : "Đang xử lý"}
+                  </TableCell>
+                  <TableCell align="center">
+                    {new Date(order.createdAt).toLocaleDateString()}
+                  </TableCell>
+                  <TableCell align="center">
+                    <Button color="primary" onClick={() => handleOpen(order)}>
+                      Xem
+                    </Button>
+                    <Button
+                      color="secondary"
+                      onClick={() => handleDelete(order._id)}
+                    >
+                      Xoá
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
